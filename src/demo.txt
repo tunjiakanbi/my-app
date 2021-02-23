@@ -1,0 +1,108 @@
+let city = {
+  name: "Madrid",
+  country: "Spain"
+}
+
+ReactDOM.render(
+  // <React.StrictMode>
+  //   <App />
+  // </React.StrictMode>,
+  //React.createElement("h1", null, "Hello!"),//takes in three arguments the element, some properties and any children
+  // React.createElement("h1", {style:{color:"blue"}}, "Hello!"),
+  <h1 id="heading">{city.name} is in {city.country}</h1>,
+  document.getElementById('root')
+);
+
+Simple Component Demo:
+function Hello() {
+  return (
+    <div>
+      <h1>Welcome</h1>
+    </div>
+  );
+}
+
+ReactDOM.render(
+  <Hello />,
+  document.getElementById('root')
+);
+
+Props 1 Demo:
+function Hello(props) {
+  // console.log(props);
+  console.log(Object.keys(props));//returns an array of keys
+  return (
+    <div>
+      <h1>Welcome to {props.library}</h1>
+      <p>{props.message}</p>
+      {/* <p>{props.number}</p> */}
+      <p>{Object.keys(props).length} Total Props</p>
+    </div>
+  );
+}
+
+ReactDOM.render(
+  <Hello library = "React" message="Lets have fun" number={3}/>,//updates dynamically, numbers need to be in {}
+  document.getElementById('root')
+);
+
+Props 2 Demo:
+function Hello({library, message, number}) {//reference prop object members by name
+  return (
+    <div>
+      <h1>Welcome to {library}</h1>
+      <p>{message}</p>
+      <p>{number} Total Props</p>
+    </div>
+  );
+}
+
+ReactDOM.render(
+  <Hello 
+  library = "React" 
+  message="Lets have fun" 
+  number={3}
+  />,//updates dynamically, numbers need to be in {}
+  document.getElementById('root')
+);
+
+Props3 & Components Demo:
+function Lake({ name }){//remember to wrap prop in {}
+return <h1>{name}</h1>
+}
+
+function App(){
+  return (
+    <div>
+      <Lake name="Lake Tahoe" />
+      <Lake name="Angora Lake" />
+      <Lake name="Shirley Lake" />
+    </div>
+  );
+}
+
+ReactDOM.render(
+  <App />,
+  document.getElementById('root')
+);
+
+
+Props4 & Components with Array Demo:
+const lakeList = ["Echo Lake", "Maud Lake", "Cascade Lake"]
+
+// function App(props){
+function App({lakes}){
+  return (
+    <ul>
+      {/* {props.lakes.map(lake =>( */}
+      {lakes.map(lake =>(
+        <li>{lake}</li>
+      ))}
+    </ul>
+  );
+}
+
+ReactDOM.render(
+  <App lakes={lakeList}/>,
+  document.getElementById('root')
+);
